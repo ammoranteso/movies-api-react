@@ -3,6 +3,8 @@ import axios from 'axios';
 import { IMAGE_API_URL } from '../../utils/constants';
 import { getMoviesList } from '../../Api/getMoviesList';
 import Movie from '../Movie/Movie';
+import './styles.scss';
+import { Paginator } from '../ui/Paginator/Paginator';
 export const Home = () => {
   const [data, setData] = useState(null);
   const getImages = (item) => {
@@ -25,9 +27,14 @@ export const Home = () => {
   console.log(data)
   return (
     <>
-      {data?.items.map(item => (
-        <Movie title={item.title} overview={item.overview} image={getImages(item?.poster_path)} />
-      ))}
+      <div className='movies__wrapper'>
+        {data?.items.map(item => (
+          <Movie title={item.title} overview={item.overview} image={getImages(item?.poster_path)} />
+        ))}
+      </div>
+      <div>
+        <Paginator />
+      </div>
     </>
   );
 };

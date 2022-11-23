@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react'
 
-export const SearchMovies = () => {
+export const SearchMovies = ({ keyword }) => {
+  const [searchMovie, setSearchMovie] = useState('')
+  const getMovieValue = ev => {
+    ev.preventDefault()
+    setSearchMovie(ev.target.value)
+  }
   return (
     <div>
-      <h1>SearchMovies</h1>
+      <form>
+        <input type='text' value={keyword} onChange={getMovieValue} />
+      </form>
     </div>
-  );
-};
+  )
+}
